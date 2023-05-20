@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recommendation Page</title>
+  <link rel="stylesheet">
+  <style>
+    .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .mess-card {
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .mess-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .mess-card h3 {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .mess-card p {
+    margin-bottom: 10px;
+    color: #888;
+  }
+  
+  .mess-card hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-top: 1px solid #ddd;
+  }
+  
+  /* Media queries for responsive design */
+  @media screen and (max-width: 768px) {
+    .mess-card {
+      width: 100%;
+    }
+  }</style>
+</head>
+<body>
+  <div id="recommendation-container" class="container"></div>
+
+  <script>
+    const sortedMesses = [
+    {
+      _id: 'mess1',
+      name: 'Mrunal khana',
+      price: 50,
+      menu: ['Usal', 'Mataki', 'Vange'],
+      imageUrl: 'mess1.jpg',
+    },
+    {
+      _id: 'mess2',
+      name: 'Sahil',
+      price: 100,
+      menu: ['Chhole', 'Matar-paneer', 'Vatana'],
+      imageUrl: 'mess2.jpg',
+    },
+    // Add more messes as needed
+  ];
+  
+  // Function to generate mess cards
+  function generateMessCard(mess) {
+    const messCard = document.createElement('div');
+    messCard.classList.add('mess-card');
+  
+    const image = document.createElement('img');
+    image.src = mess.imageUrl;
+    image.alt = mess.name;
+    messCard.appendChild(image);
+  
+    const name = document.createElement('h3');
+    name.textContent = mess.name;
+    messCard.appendChild(name);
+  
+    const price = document.createElement('p');
+    price.textContent = `Price: ${mess.price} rupees`;
+    messCard.appendChild(price);
+  
+    const menuItems = document.createElement('p');
+    menuItems.textContent = `Menu: ${mess.menu.join(', ')}`;
+    messCard.appendChild(menuItems);
+  
+    return messCard;
+  }
+  
+  // Function to display sorted messes on the recommendation page
+  function displaySortedMesses() {
+    const recommendationContainer = document.getElementById('recommendation-container');
+  
+    sortedMesses
+    .forEach((mess) => {
+        const messCard = generateMessCard(mess);
+        recommendationContainer.appendChild(messCard);
+        });
+        }
+        
+        // Call the function to display sorted messes on page load
+        window.addEventListener('load', displaySortedMesses);</script>
+</body>
+</html>
